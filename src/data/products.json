@@ -38,11 +38,11 @@
         "price": 5999,
         "discountPrice": 3499,
         "images": [
-            "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800",
-            "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=800",
-            "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800",
-            "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800",
-            "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=800&q=90"
+            "/anarkali-suit-set.jpg",
+            "/anarkali-suit-set.jpg",
+            "/anarkali-suit-set.jpg",
+            "/anarkali-suit-set.jpg",
+            "/anarkali-suit-set.jpg"
         ],
         "colors": [
             "#8338EC",
@@ -68,11 +68,11 @@
         "price": 3499,
         "discountPrice": 1999,
         "images": [
-            "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800",
-            "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800",
-            "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=800",
-            "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=90",
-            "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800"
+            "/embroidered-kurta-set.jpg",
+            "/embroidered-kurta-set.jpg",
+            "/embroidered-kurta-set.jpg",
+            "/embroidered-kurta-set.jpg",
+            "/embroidered-kurta-set.jpg"
         ],
         "colors": [
             "#FFB627",
@@ -155,11 +155,11 @@
         "price": 4999,
         "discountPrice": 2999,
         "images": [
-            "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800",
-            "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800",
-            "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=800",
-            "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=90",
-            "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800"
+            "/designer-palazo-suit.png",
+            "/designer-palazo-suit.png",
+            "/designer-palazo-suit.png",
+            "/designer-palazo-suit.png",
+            "/designer-palazo-suit.png"
         ],
         "colors": [
             "#FF6B35",
@@ -185,11 +185,11 @@
         "price": 2499,
         "discountPrice": 1499,
         "images": [
-            "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800",
-            "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800",
-            "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=800",
-            "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800",
-            "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=90"
+            "/cotton-printed-kurta.jpg",
+            "/cotton-printed-kurta.jpg",
+            "/cotton-printed-kurta.jpg",
+            "/cotton-printed-kurta.jpg",
+            "/cotton-printed-kurta.jpg"
         ],
         "colors": [
             "#06FFA5",
