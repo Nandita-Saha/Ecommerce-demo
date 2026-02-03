@@ -14,7 +14,7 @@ const Footer = () => {
                         Handcrafted fashion for the contemporary woman.
                     </p>
                     <div className="flex gap-4">
-                        {['instagram', 'facebook', 'twitter', 'pinterest'].map((social) => (
+                        {['instagram', 'facebook', 'x', 'pinterest'].map((social) => (
                             <a
                                 key={social}
                                 href={`#${social}`}
