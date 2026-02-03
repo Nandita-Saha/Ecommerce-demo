@@ -67,7 +67,7 @@ const ProductDetails = () => {
                 <span>{product.name}</span>
             </div>
 
-            <div className="max-w-[1400px] mx-auto mt-8 mb-16 px-8 grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div className="max-w-[1400px] mx-auto lg:pt-16 pt-8 mb-16 px-8 grid grid-cols-1 lg:grid-cols-2 gap-16">
                 {/* Image Gallery */}
                 <div className="flex flex-col-reverse md:flex-row gap-6">
                     <div className="flex md:flex-col gap-4 overflow-x-auto md:overflow-visible py-2">
@@ -83,7 +83,7 @@ const ProductDetails = () => {
                         ))}
                     </div>
 
-                    <div className="flex-1 h-[500px] md:h-[600px] rounded-[20px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.15)] relative">
+                    <div className="flex-1 h-[400px] md:h-[500px] lg:h-[650px] max-h-[70vh] md:max-h-[80vh] rounded-[20px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.15)] relative">
                         {product.featured && <div className="absolute top-5 left-5 bg-primary-pink text-white px-5 py-2 rounded-full font-bold text-sm uppercase tracking-wider z-10">{product.badge || 'Sale'}</div>}
                         <img src={product.images[selectedImage]} alt={product.name} className="w-full h-full object-cover" />
                     </div>
@@ -149,8 +149,8 @@ const ProductDetails = () => {
                                         key={size}
                                         onClick={() => setSelectedSize(size)}
                                         className={`px-6 py-3 border-2 rounded-[10px] cursor-pointer transition-all duration-300 font-semibold ${selectedSize === size
-                                                ? 'border-primary-pink bg-primary-pink text-white'
-                                                : 'border-[#e0e0e0] bg-white hover:border-primary-pink hover:bg-primary-pink/5'
+                                            ? 'border-primary-pink bg-primary-pink text-white'
+                                            : 'border-[#e0e0e0] bg-white hover:border-primary-pink hover:bg-primary-pink/5'
                                             }`}
                                     >
                                         {size}
