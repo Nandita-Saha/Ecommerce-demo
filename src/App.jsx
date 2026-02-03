@@ -7,6 +7,7 @@ import ThankYou from './pages/ThankYou';
 import Shop from './pages/Shop';
 import AboutUs from './pages/AboutUs';
 import CustomerService from './pages/CustomerService';
+import CartToast from './components/CartToast';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -24,6 +25,7 @@ function App() {
   return (
     <>
       <ScrollToTop />
+      <CartToast />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product/:slug" element={<ProductDetails />} />
