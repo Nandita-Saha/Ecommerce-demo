@@ -8,6 +8,9 @@ import Shop from './pages/Shop';
 import AboutUs from './pages/AboutUs';
 import CustomerService from './pages/CustomerService';
 import CartToast from './components/CartToast';
+import Auth from './pages/Auth';
+import UserProfile from './pages/UserProfile';
+import ProtectedRoute from './components/ProtectedRoute';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -31,13 +34,24 @@ function App() {
         <Route path="/product/:slug" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/shop" element={<Shop />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout" element={
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        } />
+        <Route path="/profile" element={
+          <ProtectedRoute>
+            <UserProfile />
+          </ProtectedRoute>
+        } />
         <Route path="/thank-you" element={<ThankYou />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/customer-service" element={<CustomerService />} />
+        <Route path="/login" element={<Auth />} />
       </Routes>
     </>
   );
 }
 
 export default App;
+

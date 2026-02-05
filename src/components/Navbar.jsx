@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectCartTotalQuantity } from '../store/slices/cartSlice';
+import { selectIsAuthenticated, selectCurrentUser, logout } from '../store/slices/authSlice';
 
 const Navbar = () => {
     const cartQuantity = useSelector(selectCartTotalQuantity);
+    const isAuthenticated = useSelector(selectIsAuthenticated);
+    const currentUser = useSelector(selectCurrentUser);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [showUserMenu, setShowUserMenu] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
@@ -28,6 +34,12 @@ const Navbar = () => {
             case 'Contact': return '/customer-service'; // Linking Contact to Customer Service page
             default: return '/';
         }
+    };
+
+    const handleLogout = () => {
+        dispatch(logout());
+        setShowUserMenu(false);
+        navigate('/');
     };
 
     return (
@@ -74,7 +86,44 @@ const Navbar = () => {
                                 </span>
                             )}
                         </Link>
-                        <button className="hover:text-primary-pink transition-colors text-xl">👤</button>
+
+                        {/* User Menu */}
+                        {isAuthenticated ? (
+                            <div className="relative">
+                                <button
+                                    onClick={() => setShowUserMenu(!showUserMenu)}
+                                    className="hover:text-primary-pink transition-colors text-xl flex items-center gap-2"
+                                >
+                                    👤
+                                    {currentUser && (
+                                        <span className="hidden md:inline text-sm font-semibold">
+                                            {currentUser.name?.split(' ')[0]}
+                                        </span>
+                                    )}
+                                </button>
+
+                                {/* Dropdown Menu */}
+                                {showUserMenu && (
+                                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 border border-gray-200">
+                                        <Link
+                                            to="/profile"
+                                            onClick={() => setShowUserMenu(false)}
+                                            className="block px-4 py-2 text-sm text-deep-maroon hover:bg-gray-100 no-underline"
+                                        >
+                                            👤 My Profile
+                                        </Link>
+                                        <button
+                                            onClick={handleLogout}
+                                            className="w-full text-left px-4 py-2 text-sm text-deep-maroon hover:bg-gray-100 border-t border-gray-100"
+                                        >
+                                            🚪 Logout
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <Link to="/login" className="hover:text-primary-pink transition-colors text-xl">👤</Link>
+                        )}
                     </div>
                 </div>
             </nav>
@@ -98,6 +147,32 @@ const Navbar = () => {
                                 </Link>
                             </li>
                         ))}
+
+                        {/* Mobile User Menu */}
+                        {isAuthenticated && (
+                            <>
+                                <li>
+                                    <Link
+                                        to="/profile"
+                                        className="text-deep-maroon text-lg font-semibold block border-b border-gray-100 pb-2 no-underline hover:text-primary-pink transition-colors"
+                                        onClick={() => setIsMenuOpen(false)}
+                                    >
+                                        👤 My Profile
+                                    </Link>
+                                </li>
+                                <li>
+                                    <button
+                                        onClick={() => {
+                                            handleLogout();
+                                            setIsMenuOpen(false);
+                                        }}
+                                        className="text-deep-maroon text-lg font-semibold block border-b border-gray-100 pb-2 hover:text-primary-pink transition-colors w-full text-left"
+                                    >
+                                        🚪 Logout
+                                    </button>
+                                </li>
+                            </>
+                        )}
                     </ul>
                 </div>
             </div>
@@ -106,3 +181,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

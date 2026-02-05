@@ -28,6 +28,116 @@ const InputField = ({ label, name, placeholder, formik, type = "text", disabled 
     </div>
 );
 
+// Enhanced Card Number Input - Numbers only, max 16 digits
+const CardNumberInput = ({ label, name, placeholder, formik }) => {
+    const handleCardNumberChange = (e) => {
+        // Remove all non-digit characters
+        const value = e.target.value.replace(/\D/g, '');
+
+        // Limit to 16 digits
+        const limitedValue = value.slice(0, 16);
+
+        // Update formik value
+        formik.setFieldValue(name, limitedValue);
+    };
+
+    return (
+        <div className="mb-4">
+            <label className="block text-deep-maroon font-semibold mb-2 text-sm">{label}</label>
+            <input
+                type="text"
+                name={name}
+                placeholder={placeholder}
+                onChange={handleCardNumberChange}
+                onBlur={formik.handleBlur}
+                value={formik.values[name]}
+                maxLength="16"
+                inputMode="numeric"
+                className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary-pink transition-all ${formik.touched[name] && formik.errors[name] ? 'border-red-500 bg-red-50' : 'border-gray-200'
+                    }`}
+            />
+            {formik.touched[name] && formik.errors[name] && (
+                <div className="text-red-500 text-xs mt-1">{formik.errors[name]}</div>
+            )}
+        </div>
+    );
+};
+
+// Enhanced Expiry Date Input - Auto-formats to MM/YY
+const ExpiryDateInput = ({ label, name, placeholder, formik }) => {
+    const handleExpiryChange = (e) => {
+        // Remove all non-digit characters
+        let value = e.target.value.replace(/\D/g, '');
+
+        // Limit to 4 digits (MMYY)
+        value = value.slice(0, 4);
+
+        // Auto-format as MM/YY
+        if (value.length >= 2) {
+            value = value.slice(0, 2) + '/' + value.slice(2);
+        }
+
+        // Update formik value
+        formik.setFieldValue(name, value);
+    };
+
+    return (
+        <div className="mb-4">
+            <label className="block text-deep-maroon font-semibold mb-2 text-sm">{label}</label>
+            <input
+                type="text"
+                name={name}
+                placeholder={placeholder}
+                onChange={handleExpiryChange}
+                onBlur={formik.handleBlur}
+                value={formik.values[name]}
+                maxLength="5"
+                inputMode="numeric"
+                className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary-pink transition-all ${formik.touched[name] && formik.errors[name] ? 'border-red-500 bg-red-50' : 'border-gray-200'
+                    }`}
+            />
+            {formik.touched[name] && formik.errors[name] && (
+                <div className="text-red-500 text-xs mt-1">{formik.errors[name]}</div>
+            )}
+        </div>
+    );
+};
+
+// Enhanced CVV Input - Numbers only, max 4 digits
+const CVVInput = ({ label, name, placeholder, formik }) => {
+    const handleCVVChange = (e) => {
+        // Remove all non-digit characters
+        const value = e.target.value.replace(/\D/g, '');
+
+        // Limit to 4 digits
+        const limitedValue = value.slice(0, 4);
+
+        // Update formik value
+        formik.setFieldValue(name, limitedValue);
+    };
+
+    return (
+        <div className="mb-4">
+            <label className="block text-deep-maroon font-semibold mb-2 text-sm">{label}</label>
+            <input
+                type="text"
+                name={name}
+                placeholder={placeholder}
+                onChange={handleCVVChange}
+                onBlur={formik.handleBlur}
+                value={formik.values[name]}
+                maxLength="4"
+                inputMode="numeric"
+                className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary-pink transition-all ${formik.touched[name] && formik.errors[name] ? 'border-red-500 bg-red-50' : 'border-gray-200'
+                    }`}
+            />
+            {formik.touched[name] && formik.errors[name] && (
+                <div className="text-red-500 text-xs mt-1">{formik.errors[name]}</div>
+            )}
+        </div>
+    );
+};
+
 const Checkout = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -54,10 +164,10 @@ const Checkout = () => {
             otherwise: (schema) => schema.notRequired(),
         }),
 
-        // Payment
+        // Payment - Updated validation to accept 3 or 4 digits for CVV
         cardNumber: Yup.string().matches(/^[0-9]{16}$/, 'Must be 16 digits').required('Card number is required'),
         cardExpiry: Yup.string().matches(/^(0[1-9]|1[0-2])\/[0-9]{2}$/, 'MM/YY format').required('Expiry is required'),
-        cardCVC: Yup.string().matches(/^[0-9]{3}$/, 'Must be 3 digits').required('CVC is required'),
+        cardCVC: Yup.string().matches(/^[0-9]{3,4}$/, 'Must be 3 or 4 digits').required('CVC is required'),
     });
 
     const formik = useFormik({
@@ -205,6 +315,7 @@ const Checkout = () => {
                                 </h2>
 
                                 <div className="space-y-4">
+                                    {/* Card Preview */}
                                     <div className="bg-gradient-to-r from-gray-900 to-gray-800 text-white p-4 rounded-xl mb-6 shadow-lg">
                                         <div className="flex justify-between items-start mb-8">
                                             <span className="text-xs opacity-70">Credit Card</span>
@@ -219,10 +330,26 @@ const Checkout = () => {
                                         </div>
                                     </div>
 
-                                    <InputField label="Card Number" name="cardNumber" placeholder="0000 0000 0000 0000" formik={formik} />
+                                    {/* Enhanced Card Inputs */}
+                                    <CardNumberInput
+                                        label="Card Number"
+                                        name="cardNumber"
+                                        placeholder="1234567812345678"
+                                        formik={formik}
+                                    />
                                     <div className="grid grid-cols-2 gap-4">
-                                        <InputField label="Expiry Date" name="cardExpiry" placeholder="MM/YY" formik={formik} />
-                                        <InputField label="CVC" name="cardCVC" placeholder="123" formik={formik} />
+                                        <ExpiryDateInput
+                                            label="Expiry Date"
+                                            name="cardExpiry"
+                                            placeholder="MM/YY"
+                                            formik={formik}
+                                        />
+                                        <CVVInput
+                                            label="CVV"
+                                            name="cardCVC"
+                                            placeholder="123"
+                                            formik={formik}
+                                        />
                                     </div>
                                 </div>
 

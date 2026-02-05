@@ -46,7 +46,7 @@ const Cart = () => {
         return (
             <>
                 <Navbar />
-                <div className="min-h-[60vh] flex flex-col items-center justify-center p-8 text-center">
+                <div className="min-h-[60vh] mt-20 flex flex-col items-center justify-center p-8 text-center">
                     <div className="text-6xl mb-6">🛒</div>
                     <h2 className="text-3xl font-playfair font-bold text-deep-maroon mb-4">Your cart is empty</h2>
                     <p className="text-xl text-[#666] mb-8">Looks like you haven't added anything yet.</p>
