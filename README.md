@@ -232,13 +232,49 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 ## 🚀 Deployment
 
-For production deployment:
-1. Set `NODE_ENV=production` in `.env`
-2. Use a production MongoDB instance (MongoDB Atlas)
-3. Generate a strong `JWT_SECRET`
-4. Build frontend: `npm run build`
-5. Serve built files from `dist/`
-6. Use a process manager like PM2 for the backend
+### Deploy to Render (Recommended - FREE Forever ✅)
+
+**Render offers a truly free tier that doesn't expire!**
+
+For detailed step-by-step instructions, see **[RENDER_DEPLOYMENT.md](./RENDER_DEPLOYMENT.md)**
+
+**Quick Deploy:**
+1. Push your code to GitHub
+2. Create a Render account at https://render.com
+3. Create a new Web Service from your GitHub repo
+4. Add environment variables (see guide)
+5. Deploy! 🚀
+
+**Why Render?**
+- ✅ FREE tier that lasts forever
+- ✅ 750 hours/month (enough for 24/7 operation)
+- ✅ Auto-deploy from GitHub
+- ✅ Free SSL certificates
+- ✅ Easy setup and configuration
+
+### Alternative: Deploy to Railway
+
+**Railway offers $5 free credit per month (not free forever)**
+
+For detailed instructions, see **[RAILWAY_DEPLOYMENT.md](./RAILWAY_DEPLOYMENT.md)**
+
+### Deployment Comparison
+
+| Feature | Render (Free) | Railway (Free Trial) |
+|---------|---------------|---------------------|
+| **Cost** | FREE forever ✅ | $5 credit/month |
+| **Uptime** | Spins down after 15min | Always on (until credit runs out) |
+| **Best For** | Long-term hosting | Testing/short-term |
+
+### Production Checklist
+
+Before deploying to either platform:
+1. Set `NODE_ENV=production`
+2. Use MongoDB Atlas (free tier)
+3. Generate a strong `JWT_SECRET` (64+ characters)
+4. Add environment variables to your platform
+5. Test locally with production build: `npm run build && npm start`
+
 
 ## 🤝 Contributing
 
