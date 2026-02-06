@@ -24,3 +24,8 @@ dist-ssr
 *.sw?
 /files/
 .env
+
+# Helper scripts (local only)
+npm-build.bat
+npm-dev.bat
+BUILD_MERGE_STATUS.md
